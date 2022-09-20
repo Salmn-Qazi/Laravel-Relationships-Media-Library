@@ -15,4 +15,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/add_user', [HomeController::class, 'add_user']);
+Route::post('/add', [HomeController::class, 'add'])->name('user.add');
 Route::get('/add_contact', [HomeController::class, 'add_contact']);
+Route::get('/list', [HomeController::class, 'list']);

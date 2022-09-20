@@ -29,4 +29,28 @@ class HomeController extends Controller
 
        $user->contact()->save($contact);
     }
+
+    public function add_user()
+    {
+        return view('Home.add');
+    }
+
+    public function add(Request $request)
+    {
+        if($request->hasFile('image') && $request->file('image')->isValid())
+        {
+            $user = User::Create(['name' => $request->name]);
+            $user->addMediaFromRequest('image')->toMediaCollection('Images');
+        }
+        else
+        {
+            return 'fail';
+        }
+    }
+
+    public function list()
+    {
+        $users = User::all();
+        return view('home.list', compact('users'));
+    }
 }
